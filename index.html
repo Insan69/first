@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Untuk Kamu</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .slide {
+      display: none;
+      padding: 100px 20px;
+      text-align: center;
+      height: 100vh;
+      box-sizing: border-box;
+    }
+
+    .slide.active {
+      display: block;
+      animation: fade 1s ease-in-out;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 22px;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      font-size: 18px;
+      background: #fff;
+      color: #f06292;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    img {
+      max-width: 90%;
+      border-radius: 20px;
+      margin-top: 20px;
+    }
+
+    .heart {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: fall 5s linear infinite;
+      top: -10%;
+      z-index: 1;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(45deg); opacity: 0; }
+    }
+
+    /* Style untuk quiz, surat, dan puzzle */
+    .section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .quiz, #surat-cinta, #puzzle-container {
+      background: #fff;
+      color: #333;
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .quiz button {
+      background: #f06292;
+      color: white;
+      margin: 10px 5px;
+    }
+
+    #surat-cinta {
+      text-align: left;
+    }
+
+    #puzzle-container {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-gap: 2px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .tile {
+      width: 100px;
+      height: 100px;
+      background-size: 300px 300px;
+      border: 1px solid #fff;
+      cursor: pointer;
+    }
+  .music-controls {
+  position: fixed;
+  top: 20px; /* dari bottom ke top */
+  left: 20px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  z-index: 1000; /* supaya selalu di atas */
+}
+
+    .music-controls button {
+      background: #f06292;
+      color: white;
+      font-size: 18px;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Musik take.mp3 -->
+<audio id="music" src="take.mp3" preload="auto"></audio>
+
+<!-- Kontrol Musik -->
+<div class="music-controls">
+  <button onclick="togglePlay()">Play/Pause</button>
+  <button onclick="stopMusic()">Stop</button>
+</div>
+  
+<!-- Efek Love Jatuh -->
+<script>
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (3 + Math.random() * 2) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+  }
+  setInterval(createHeart, 300);
+  
+  const music = document.getElementById('music');
+  let isPlaying = false;
+
+  function togglePlay() {
+    if (isPlaying) {
+      music.pause();
+    } else {
+      music.play();
+    }
+    isPlaying = !isPlaying;
+  }
+
+  function stopMusic() {
+    music.pause();
+    music.currentTime = 0;  // Reset music to the start
+    isPlaying = false;
+  }
+</script>
+
+<!-- Halaman 1: Slideshow dan Gallery -->
+<div class="slide active">
+  <h1>Hai Adee Gress Kesayangan abang Isann!</h1>
+  <p>Website ini abang buat spesial cuma buat adee tauu dibaca yaaa...</p>
+  <button onclick="nextSlide()">🩷IYA ABANGG🩷</button>
+</div>
+
+<div class="slide">
+  <h1>❤❤Adee❤❤</h1>
+  <p>abang isan beruntungg banget tauuu ketemu sama cewe secantikk adee..</p>
+  <button onclick="nextSlide()">NYENYENYENYENYEE</button>
+</div>
+
+<div class="slide">
+  <h1>Adee tauu ga pap adee yang paling abangg sukaa, Kita Rivieww yaaa</h1>
+  <div class="grid-gallery">
+    <img src="cutes001.jpg" alt="Cutes 001">
+<img src="cutes002.jpg" alt="Cutes 002">
+<img src="cutes003.jpg" alt="Cutes 003">
+<img src="cutes004.jpg" alt="Cutes 004">
+<img src="cutes005.jpg" alt="Cutes 005">
+<img src="cutes006.jpg" alt="Cutes 006">
+<img src="cutes007.jpg" alt="Cutes 007">
+<img src="cutes008.jpg" alt="Cutes 008">
+<img src="cutes009.jpg" alt="Cutes 009">
+<img src="cutes010.jpg" alt="Cutes 010">
+<img src="cutes011.jpg" alt="Cutes 011">
+<img src="cutes012.jpg" alt="Cutes 012">
+<img src="cutes013.jpg" alt="Cutes 013">
+<img src="cutes014.jpg" alt="Cutes 014">
+<img src="cutes015.jpg" alt="Cutes 015">
+<img src="cutes016.jpg" alt="Cutes 016">
+<img src="cutes017.jpg" alt="Cutes 017">
+<img src="cutes018.jpg" alt="Cutes 018">
+<img src="cutes019.jpg" alt="Cutes 019">
+<img src="cutes020.jpg" alt="Cutes 020">
+<img src="cutes021.jpg" alt="Cutes 021">
+<img src="cutes022.jpg" alt="Cutes 022">
+<img src="cutes023.jpg" alt="Cutes 023">
+<img src="cutes024.jpg" alt="Cutes 024">
+<img src="cutes025.jpg" alt="Cutes 025">
+<img src="cutes026.jpg" alt="Cutes 026">
+<img src="cutes027.jpg" alt="Cutes 027">
+<img src="cutes028.jpg" alt="Cutes 028">
+<img src="cutes029.jpg" alt="Cutes 029">
+<img src="cutes030.jpg" alt="Cutes 030">
+<img src="cutes031.jpg" alt="Cutes 031">
+<img src="cutes032.jpg" alt="Cutes 032">
+<img src="cutes033.jpg" alt="Cutes 033">
+<img src="cutes034.jpg" alt="Cutes 034">
+<img src="cutes035.jpg" alt="Cutes 035">
+<img src="cutes036.jpg" alt="Cutes 036">
+<img src="cutes037.jpg" alt="Cutes 037">
+<img src="cutes038.jpg" alt="Cutes 038">
+<img src="cutes039.jpg" alt="Cutes 039">
+<img src="cutes040.jpg" alt="Cutes 040">
+<img src="cutes041.jpg" alt="Cutes 041">
+<img src="cutes042.jpg" alt="Cutes 042">
+<img src="cutes043.jpg" alt="Cutes 043">
+<img src="cutes044.jpg" alt="Cutes 044">
+<img src="cutes045.jpg" alt="Cutes 045">
+<img src="cutes046.jpg" alt="Cutes 046">
+<img src="cutes047.jpg" alt="Cutes 047">
+<img src="cutes048.jpg" alt="Cutes 048">
+<img src="cutes049.jpg" alt="Cutes 049">
+<img src="cutes050.jpg" alt="Cutes 050">
+<img src="cutes051.jpg" alt="Cutes 051">
+<img src="cutes052.jpg" alt="Cutes 052">
+<img src="cutes053.jpg" alt="Cutes 053">
+<img src="cutes054.jpg" alt="Cutes 054">
+<img src="cutes055.jpg" alt="Cutes 055">
+<img src="cutes056.jpg" alt="Cutes 056">
+<img src="cutes057.jpg" alt="Cutes 057">
+<img src="cutes058.jpg" alt="Cutes 058">
+<img src="cutes059.jpg" alt="Cutes 059">
+<img src="cutes060.jpg" alt="Cutes 060">
+<img src="cutes061.jpg" alt="Cutes 061">
+<img src="cutes062.jpg" alt="Cutes 062">
+<img src="cutes063.jpg" alt="Cutes 063">
+<img src="cutes064.jpg" alt="Cutes 064">
+<img src="cutes065.jpg" alt="Cutes 065">
+<img src="cutes066.jpg" alt="Cutes 066">
+<img src="cutes067.jpg" alt="Cutes 067">
+<img src="cutes068.jpg" alt="Cutes 068">
+<img src="cutes069.jpg" alt="Cutes 069">
+<img src="cutes070.jpg" alt="Cutes 070">
+<img src="cutes071.jpg" alt="Cutes 071">
+<img src="cutes072.jpg" alt="Cutes 072">
+<img src="cutes073.jpg" alt="Cutes 073">
+<img src="cutes074.jpg" alt="Cutes 074">
+<img src="cutes075.jpg" alt="Cutes 075">
+<img src="cutes076.jpg" alt="Cutes 076">
+<img src="cutes077.jpg" alt="Cutes 077">
+<img src="cutes078.jpg" alt="Cutes 078">
+<img src="cutes079.jpg" alt="Cutes 079">
+<img src="cutes080.jpg" alt="Cutes 080">
+<img src="cutes081.jpg" alt="Cutes 081">
+<img src="cutes082.jpg" alt="Cutes 082">
+<img src="cutes083.jpg" alt="Cutes 083">
+<img src="cutes084.jpg" alt="Cutes 084">
+<img src="cutes085.jpg" alt="Cutes 085">
+<img src="cutes086.jpg" alt="Cutes 086">
+<img src="cutes087.jpg" alt="Cutes 087">
+<img src="cutes088.jpg" alt="Cutes 088">
+<img src="cutes089.jpg" alt="Cutes 089">
+<img src="cutes090.jpg" alt="Cutes 090">
+<img src="cutes091.jpg" alt="Cutes 091">
+<img src="cutes092.jpg" alt="Cutes 092">
+<img src="cutes093.jpg" alt="Cutes 093">
+<img src="cutes094.jpg" alt="Cutes 094">
+<img src="cutes095.jpg" alt="Cutes 095">
+<img src="cutes096.jpg" alt="Cutes 096">
+<img src="cutes097.jpg" alt="Cutes 097">
+<img src="cutes098.jpg" alt="Cutes 098">
+<img src="cutes099.jpg" alt="Cutes 099">
+<img src="cutes100.jpg" alt="Cutes 100">
+<img src="cutes101.jpg" alt="Cutes 101">
+<img src="cutes102.jpg" alt="Cutes 102">
+<img src="cutes103.jpg" alt="Cutes 103">
+<img src="cutes104.jpg" alt="Cutes 104">
+<img src="cutes105.jpg" alt="Cutes 105">
+<img src="cutes106.jpg" alt="Cutes 106">
+<img src="cutes107.jpg" alt="Cutes 107">
+<img src="cutes108.jpg" alt="Cutes 108">
+<img src="cutes109.jpg" alt="Cutes 109">
+<img src="cutes110.jpg" alt="Cutes 110">
+<img src="cutes111.jpg" alt="Cutes 111">
+<img src="cutes112.jpg" alt="Cutes 112">
+<img src="cutes113.jpg" alt="Cutes 113">
+<img src="cutes114.jpg" alt="Cutes 114">
+<img src="cutes115.jpg" alt="Cutes 115">
+<img src="cutes116.jpg" alt="Cutes 116">
+<img src="cutes117.jpg" alt="Cutes 117">
+<img src="cutes118.jpg" alt="Cutes 118">
+<img src="cutes119.jpg" alt="Cutes 119">
+<img src="cutes120.jpg" alt="Cutes 120">
+<img src="cutes121.jpg" alt="Cutes 121">
+<img src="cutes122.jpg" alt="Cutes 122">
+<img src="cutes123.jpg" alt="Cutes 123">
+<img src="cutes124.jpg" alt="Cutes 124">
+<img src="cutes125.jpg" alt="Cutes 125">
+<img src="cutes126.jpg" alt="Cutes 126">
+<img src="cutes127.jpg" alt="Cutes 127">
+<img src="cutes128.jpg" alt="Cutes 128">
+<img src="cutes129.jpg" alt="Cutes 129">
+<img src="cutes130.jpg" alt="Cutes 130">
+<img src="cutes131.jpg" alt="Cutes 131">
+<img src="cutes132.jpg" alt="Cutes 132">
+<img src="cutes133.jpg" alt="Cutes 133">
+<img src="cutes134.jpg" alt="Cutes 134">
+<img src="cutes135.jpg" alt="Cutes 135">
+<img src="cutes136.jpg" alt="Cutes 136">
+<img src="cutes137.jpg" alt="Cutes 137">
+<img src="cutes138.jpg" alt="Cutes 138">
+<img src="cutes139.jpg" alt="Cutes 139">
+<img src="cutes140.jpg" alt="Cutes 140">
+<img src="cutes141.jpg" alt="Cutes 141">
+<img src="cutes142.jpg" alt="Cutes 142">
+<img src="cutes143.jpg" alt="Cutes 143">
+<img src="cutes144.jpg" alt="Cutes 144">
+<img src="cutes145.jpg" alt="Cutes 145">
+<img src="cutes146.jpg" alt="Cutes 146">
+<img src="cutes147.jpg" alt="Cutes 147">
+<img src="cutes148.jpg" alt="Cutes 148">
+<img src="cutes149.jpg" alt="Cutes 149">
+<img src="cutes150.jpg" alt="Cutes 150">
+<img src="cutes151.jpg" alt="Cutes 151">
+<img src="cutes152.jpg" alt="Cutes 152">
+<img src="cutes153.jpg" alt="Cutes 153">
+<img src="cutes154.jpg" alt="Cutes 154">
+<img src="cutes155.jpg" alt="Cutes 155">
+<img src="cutes156.jpg" alt="Cutes 156">
+<img src="cutes157.jpg" alt="Cutes 157">
+<img src="cutes158.jpg" alt="Cutes 158">
+<img src="cutes159.jpg" alt="Cutes 159">
+<img src="cutes160.jpg" alt="Cutes 160">
+<img src="cutes161.jpg" alt="Cutes 161">
+  </div>
+  <p>CAPEEE SCROLL NYAA KANNN,soalnya semua pap atau foto yang adee kirim semuanyaa favorite abangg,semuanyaa cantikk,lucuu,imuttt pokonyaaa segala galanyaaa buat abangg😝😝</p>
+  <button onclick="nextSlide()">Lanjut YUUUUU....</button>
+</div>
+
+<!-- Halaman 2: Quiz Cinta -->
+<div class="slide">
+  <h1>Tebak-Tebakan Isann</h1>
+  <div class="quiz">
+    <p><strong>Ayam,Ayam apaa yangg kecill bangett?</strong></p>
+    <button onclick="checkAnswer(this, false)">Anak Ayam</button>
+    <button onclick="checkAnswer(this, true)">Ayam Suwirr</button>
+    <button onclick="checkAnswer(this, false)">Ayam jantan</button>
+  </div>
+  <button onclick="nextSlide()">🥰Nextt Sayaanggg🥰</button>
+</div>
+
+<!-- Halaman 3: Surat Cinta -->
+<div class="slide">
+  <h1>Surat Buat pacarr abangg</h1>
+  <div id="surat-cinta">
+    <p>adee sayangku...</p>
+    <p>abangg masih dan bakal terus inget pertama kali kita ketemu,ngobrol walaupun di layar dan ga secara langsungg. senyum adee buat abang harus mikir berkali kali terkait berhenti kejar cewe atau engga. Sejak ketemu adee itu, hari-hari abang selalu cerah karena adee. Walau kadangg abang sebel karna adee kadang ngilang atau cuekk,tapi abangg tetep sayanggg bangett sama adee</p>
+    <p>abang nggak butuh apapun lagi, cukup adee,kesayangan abangg. ga peduli jarak bener bener jauh sekalipun, atau apapun yang ganggu hubungan ini. makasihhh banyakkk udah hadir di hidup abangg. adee tau ga adee itu hadiah terindah dari semesta buat abangg...</p>
+    <p>Semoga cinta & sayangg kita terus tumbuh, kaya bunga yang adee suka dan selalu mekar tiap pagi. Aku cinta kamu, selalu.</p>
+    <p>- Yang selalu mencintaimu</p>
+  </div>
+  <button onclick="nextSlide()">🥺🥺Makasiii abangg sayaanggg🥺🥺</button>
+</div>
+
+<!-- Halaman 4: Puzzle Foto -->
+<div class="slide">
+  <h1>Susun Puzzle Ini yaaaa</h1>
+  <p>Foto kita kalau kamu berhasil!!!</p>
+  <div id="puzzle-container"></div>
+  <button onclick="shuffle()">Acak Ulang</button>
+</div>
+
+<!-- Script Slide dan Fitur -->
+<script>
+  // Slide Logic
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+  function nextSlide() {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }
+
+  // Quiz Cinta
+  function checkAnswer(button, correct) {
+    if (correct) {
+      alert("Yesss adee benar! Karna adee benarrr, adee dapattt hadiahhh!,Yaituuu abangg hadiah nyaaa hihihii");
+    } else {
+      alert("Hihi salah, coba lagi yaa...");
+    }
+  }
+
+  // Puzzle Game
+  const container = document.getElementById("puzzle-container");
+  let positions = [...Array(9).keys()];
+
+  function createPuzzle() {
+    container.innerHTML = '';
+    positions.forEach((i) => {
+      const tile = document.createElement('div');
+      tile.className = 'tile';
+      tile.style.backgroundImage = "url('puzzle.png')";
+      tile.style.backgroundPosition = `-${(i % 3) * 100}px -${Math.floor(i / 3) * 100}px`;
+      tile.dataset.index = i;
+      tile.onclick = () => swapTile(tile);
+      container.appendChild(tile);
+    });
+  }
+
+  let selected = null;
+  function swapTile(tile) {
+    if (!selected) {
+      selected = tile;
+      tile.style.border = '3px solid red';
+    } else {
+      const idx1 = selected.dataset.index;
+      const idx2 = tile.dataset.index;
+
+      [selected.style.backgroundPosition, tile.style.backgroundPosition] =
+        [tile.style.backgroundPosition, selected.style.backgroundPosition];
+
+      [selected.dataset.index, tile.dataset.index] = [tile.dataset.index, selected.dataset.index];
+      selected.style.border = '1px solid #fff';
+      selected = null;
+
+      checkWin();
+    }
+  }
+
+  function shuffle() {
+    positions.sort(() => Math.random() - 0.5);
+    createPuzzle();
+  }
+
+  function checkWin() {
+    const tiles = document.querySelectorAll('.tile');
+    const correct = [...tiles].every((tile, i) => tile.dataset.index == i);
+    if (correct) {
+      alert("wiiihhh adeee berhasil susun puzzle-nya! Hebat!");
+    }
+  }
+
+  // Inisialisasi puzzle
+  shuffle();
+</script>
+</body>
+</html>
